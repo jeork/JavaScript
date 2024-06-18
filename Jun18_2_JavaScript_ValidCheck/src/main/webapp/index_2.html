@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function checkValid() {
+		let idInput = document.ff.idd; // document.form이름.input이름
+		let pwInput = document.ff.pwpw;
+		let pwchkInput = document.ff.pwchk;
+		let footInput = document.ff.foot;
+
+		// 필수 검사
+		if (!idInput.value) {
+			alert("님 ID 안씀");
+			idInput.focus();
+			return false;
+		} else if (idInput.value.length<5 || idInput.value.length>10) {
+			alert("ID는 5~10글자 사이로 만들어야합니다")
+			idInput.focus();
+			idInput.value = "";
+			return false;
+		}
+		if (!pwInput.value) {
+			alert("비밀번호 입력하세요!")
+			pwInput.focus();
+			return false;
+		} else if (idInput.value.length < 5) {
+			alert("비밀번호는 5~10글자!")
+			pwInput.focus();
+			pwInput.value = "";
+			return false
+		}
+
+		if (pwInput.value != pwchkInput.value) {
+			alert("비밀번호가 서로 일치하지 않습니다")
+			pwInput.focus();
+			pwchkInput.value = "";
+			return false
+		}
+		//PW에 3,6,9 중에 하나이상/  h,k중에 하나 이상 들어가 있어야 함
+		let numExist = false;
+		let num = "369";
+		for (var i = 0; i < num.length; i++) {
+			if (pwInput.value.indexOf(num[i]) != -1) {
+				numExist = true;
+				break;
+			}
+		}
+		let letterExist = false;
+		let letter = "hk";
+		for (var i = 0; i < letter.length; i++) {
+			if (pwInput.value.indexOf(letter[i]) != -1) {
+				letterExist = true;
+				break;
+			}
+		}
+
+		if (!numExist || !letterExist) {
+			alert(numExist);
+			alert(letterExist);
+			return false
+		}
+		// 발사이즈(숫자만)
+		if (isNaN(footInput.value)) {
+			alert("숫자만 입력");
+
+			footInput.value = "";
+			footInput.focus();
+			return false;
+		}
+
+		return true;
+	}
+	let s = "오늘은 화요일인데 너무 안졸려요";
+	// alert(s.length);
+	// alert(s[5]);
+	alert(s.indexOf("졸"));
+	alert(s.indexOf("악")); // "악"이라는 값이 없어서 -1을 리턴
+	alert(s.indexOf("매우") != -1); // "매우"가 포함되어있는가? false
+	// indexOf : 있으면 그 위치를 리턴, 없으면 -1을 리턴
+</script>
+</head>
+<body>
+	<!-- 
+		<form> 안에
+		ID / PW / PW확인 / 발사이즈 / 버튼
+	 -->
+	<form action="ㅋㅋ" name="ff" onsubmit="return checkValid();">
+		ID <input name="idd" maxlength="10" autofocus="autofocus"><br>
+		PW <input name="pwpw" maxlength="10" type="password"><br>
+		PW확인 <input name="pwchk" maxlength="10" type="password"><br>
+		발사이즈 <input name="foot">
+		<hr>
+		<button>확인</button>
+	</form>
+</body>
+</html>

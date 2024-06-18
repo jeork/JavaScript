@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function goHahaha() {
+		// document : 이 html 문서
+		let iiInput = document.getElementById("ii"); //id가 ii인 것
+		// document.getElementByClass("ii"); //class가 ii인 것
+		// document.getElementByTagName("input"); // 특정 태그명
+		let iiInputVal = iiInput.value;
+		
+		location.href="ㅋㅋㅋ?ii=" + iiInputVal;		
+	}
+</script>
+</head>
+<body>
+	<!-- 
+		버튼을 더블클릭하면 ㅋㅋㅋ?ii=xxx로 get방식 요청
+		주소입력					- GET
+		<a> 태그					- GET
+		<form>+<button> 		- GET / POST
+		JavaScript				- GET
+	 -->
+	<input id = "ii">
+	<button ondblclick="goHahaha();">확인</button>
+</body>
+</html>
